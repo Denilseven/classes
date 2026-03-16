@@ -1,3 +1,13 @@
+/*
+ * Atividade do pet-shop parte 2.
+ * Aluno: Denilson
+ * 
+ * "Esse código tá tão repetitivo ;-;
+ * chato de expandir com a implementação atual;
+ * mal consigo imaginar como deve ser trabalhar sobre as bases
+ * de código legado mais cabulosas que existem por aí."
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -13,7 +23,16 @@ public class Main {
             int input = readFromOptions(new String[]{"Login", "Convidado", "Sair"});
             switch (input) {
                 case 1:
-                    System.err.println("Erro: Não implementado!");
+                    printTitle("LOGIN");
+                    String username = readText("Usuário:");
+                    String password = readText("Senha:"); /* top 10 formas de autenticação seguras 2026 */
+                    if (username.equals("admin") && password.equals("admin")) {
+                        currentCookie.loginType = Cookie.LoginType.ADMIN;
+                        mainScreen(currentCookie);
+                    }
+                    else {
+                        printTitle("USUÁRIO OU SENHA INVÁLIDOS");
+                    }
                     break;
                 case 2:
                     currentCookie.loginType = Cookie.LoginType.GUEST;
@@ -30,23 +49,54 @@ public class Main {
 
     public static void mainScreen(Cookie cookie) {
         boolean repeat = true;
+        int input = -1;
         while (repeat) {
-            String titleMessage = "TELA PRINCIPAL";
-            if (cookie.loginType == Cookie.LoginType.GUEST) titleMessage = "CONVIDADO";
-            if (cookie.loginType == Cookie.LoginType.ADMIN) titleMessage = "ADMINISTRAÇÃO";
-            printTitle(titleMessage);
-
-            int input = readFromOptions(new String[]{"Solicitar atendimento.", "Sair."});
-            switch (input) {
-                case 1:
-                    printTitle("SOLICITAR ATENDIMENTO");
-                    solicitarAtendimento();
+            switch (cookie.loginType) {
+                case Cookie.LoginType.GUEST:
+                    printTitle("CONVIDADO");
+                    input = readFromOptions(new String[]{"Solicitar atendimento.", "Sair."});
+                    switch (input) {
+                        case 1:
+                            printTitle("SOLICITAR ATENDIMENTO");
+                            solicitarAtendimento();
+                            break;
+                        case 2:
+                            currentCookie.logout();
+                            repeat = false;
+                            break;
+                        default:
+                            break;
+                    }
                     break;
-                case 2:
-                    currentCookie.logout();
-                    repeat = false;
+                case Cookie.LoginType.ADMIN:
+                    printTitle("ADMINISTRAÇÃO");
+                    input = readFromOptions(new String[]{"Solicitar atendimento.", "Consultar atendimentos.", "Sair."});
+                    switch (input) {
+                        case 1:
+                            printTitle("SOLICITAR ATENDIMENTO");
+                            solicitarAtendimento();
+                            break;
+                        case 2:
+                            printTitle("ATENDIMENTOS REGISTRADOS");
+                            if (atendimentos.isEmpty()) {
+                                printCentered("Nenhum atendimento registrado.");
+                            }
+                            for (Atendimento at : atendimentos) {
+                                System.out.println(at.dia + "/" + at.mes + "/" + at.ano + " - " + at.pet.name + " (" + at.pet.peso + "kg)");
+                            }
+                            readingWait();
+                            break;
+                        case 3:
+                            currentCookie.logout();
+                            repeat = false;
+                            break;
+                        default:
+                            break;
+                    }
                     break;
                 default:
+                    printTitle("ERRO: COOKIE INVÁLIDO");
+                    repeat = false;
                     break;
             }
         }
@@ -72,6 +122,7 @@ public class Main {
         printCentered(newPet.name + " (" + newPet.peso + "kg)");
         printCentered(newAtendimento.dia + "/" + newAtendimento.mes + "/" + newAtendimento.ano);
         printSeparator();
+        readingWait();
     }
 
     public static void printTitle(String title) {
@@ -159,5 +210,9 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println(message);
         scanner.nextLine();
+    }
+
+    public static void readingWait() {
+        new Scanner(System.in).nextLine();
     }
 }
