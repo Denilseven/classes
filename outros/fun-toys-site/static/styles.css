@@ -1,0 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+
+    /* Catppuccin Latte (https://github.com/catppuccin/catppuccin) */
+    --cl-rosewater: #dc8a78;
+    --cl-flamingo:  #dd7878;
+    --cl-pink:      #ea76cb;
+    --cl-mauve:     #8839ef;
+    --cl-red:       #d20f39;
+    --cl-maroon:    #e64553;
+    --cl-peach:     #fe640b;
+    --cl-yellow:    #df8e1d;
+    --cl-green:     #40a02b;
+    --cl-teal:      #179299;
+    --cl-sky:       #04a5e5;
+    --cl-sapphire:  #209fb5;
+    --cl-blue:      #1e66f5;
+    --cl-lavender:  #7287fd;
+    --cl-text:      #4c4f69;
+    --cl-subtext1:  #5c5f77;
+    --cl-subtext0:  #6c6f85;
+    --cl-overlay2:  #7c7f93;
+    --cl-overlay1:  #8c8fa1;
+    --cl-overlay0:  #9ca0b0;
+    --cl-surface2:  #acb0be;
+    --cl-surface1:  #bcc0cc;
+    --cl-surface0:  #ccd0da;
+    --cl-base:      #eff1f5;
+    --cl-mantle:    #e6e9ef;
+    --cl-crust:     #dce0e8;
+
+    --site-main: var(--cl-red);
+}
+
+a {
+    border-bottom: 2px solid currentColor;
+    color: var(--cl-red);
+    text-decoration: none;
+    transition: border-bottom 200ms;
+}
+
+a:focus,
+a:hover {
+    border-bottom: 10px solid currentColor;
+    transition: border-bottom 100ms;
+}
+
+a:visited {
+    color: var(--cl-mauve);
+}
+
+body {
+    background-color: var(--cl-base);
+    color: var(--cl-text);
+}
+
+nav {
+    align-items: center;
+    background-color: var(--site-main);
+    color: var(--cl-crust);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1rem;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    list-style-type: none;
+}
+
+nav a {
+    color: var(--cl-base);
+}
+
+main {
+    padding: 1rem;
+}
