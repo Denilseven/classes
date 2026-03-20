@@ -1,3 +1,5 @@
+> Based on the codebase I wrote for CS50's "Finance" problem set.
+
 # Working with Flask
 
 ## [Installation](https://flask.palletsprojects.com/en/stable/installation/#install-flask)

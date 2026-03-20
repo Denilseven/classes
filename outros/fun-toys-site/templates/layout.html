@@ -13,9 +13,11 @@
     <nav>
         <h1>FUN TOYS</h1>
         <ul>
-            <li><p><a href="#">Lorem</a></p></li>
-            <li><p><a href="#">Ipsum</a></p></li>
-            <li><p><a href="#">Dolor</a></p></li>
+            {% if session["user_id"] %}
+            <li><p><a href="/logout">Sair</a></p></li>
+            {% else %}
+            <li><p><a href="/login">Entrar</a></p></li>
+            {% endif %}
         </ul>
     </nav>
 

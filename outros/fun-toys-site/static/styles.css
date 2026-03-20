@@ -61,8 +61,8 @@ nav {
     color: var(--cl-crust);
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    padding: 1rem;
+    justify-content: space-between;
+    padding: 1rem 10vw;
 }
 
 nav ul {
@@ -72,7 +72,8 @@ nav ul {
     list-style-type: none;
 }
 
-nav a {
+nav a,
+nav a:visited {
     color: var(--cl-base);
 }
 
