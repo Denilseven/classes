@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}Registrar Administrador{% endblock %}
+
+{% block main %}
+    <h2>Registrar Administrador</h2>
+
+    <p>Não há nenhum FUNCIONÁRIO registrado no banco de dados.</p>
+    <p>O primeiro FUNCIONÁRIO é registrado como ADMIN; escolha uma senha segura para o funcionário ADMIN.</p>
+    
+    <form action="/firstusersetup" method="post">
+        <input autocomplete="off" name="password" placeholder="Senha Admin" type="password">
+        <button class="btn btn-primary" type="submit">Continuar</button>
+    </form>
+{% endblock %}

@@ -24,6 +24,7 @@ def init_db():
             salario REAL NOT NULL,
             cargo TEXT NOT NULL,
             id_pessoa INTEGER NOT NULL,
+            hash_senha TEXT NOT NULL,
             FOREIGN KEY(id_pessoa) REFERENCES pessoa(id)
         );
         """
@@ -69,3 +70,6 @@ def init_db():
         );
         """
     )
+
+    cur.close()
+    conn.close()

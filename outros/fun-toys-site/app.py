@@ -2,6 +2,7 @@ import sqlite3, db
 from flask import Flask, render_template, session, request, redirect
 from flask_session import Session
 from helpers import apology, login_required, brl
+from werkzeug.security import check_password_hash, generate_password_hash
 
 app = Flask(__name__)
 app.jinja_env.filters["brl"] = brl
@@ -52,7 +53,37 @@ def login():
         
     # User reached route via GET (as by clicking a link or via redirect)
     else:
+        # Check if there is ANY user in the database, if not, do the "first user setup"
+        conn = sqlite3.connect("banco.db", check_same_thread=True)
+        cur = conn.cursor()
+        cur.execute("SELECT EXISTS(SELECT 1 FROM funcionario LIMIT 1);")
+        exists = (cur.fetchone()[0] == True)
+        cur.close()
+        conn.close()
+        if (not exists):
+            return render_template("firstusersetup.html")
+
         return render_template("login.html")
+    
+@app.route("/firstusersetup", methods=["POST"])
+def firstusersetup():
+    password = request.form.get("password") # chat is this safe?
+    if not password:
+        return apology("O campo de senha é necessário")
+    conn = sqlite3.connect("banco.db", check_same_thread=True)
+    cur = conn.cursor()
+
+    cur.execute("INSERT INTO pessoa(nome) VALUES('ADMINISTRADOR');")
+    hash = generate_password_hash(password)
+    new_id = cur.lastrowid
+    cur.execute("INSERT INTO funcionario(cargo, id_pessoa, hash_senha, salario) VALUES('ADMIN', ?, ?, 0);", (new_id, hash))
+
+    conn.commit()
+    cur.close()
+    conn.close()
+
+    return redirect("/")
+
 
 @app.route("/logout")
 def logout():
@@ -75,6 +106,7 @@ def registertoy():
         cur = conn.cursor()
         cur.execute("INSERT INTO brinquedo(nome, fabricante, valor, estoque) VALUES(?, ?, ?, ?);", (toyname, manufacturer, value, quantity))
         conn.commit()
+        cur.close()
         conn.close() # kinda crazy all these lines for one thingy
 
         return redirect("/")
