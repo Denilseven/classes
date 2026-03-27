@@ -50,6 +50,10 @@ a:visited {
     color: var(--cl-mauve);
 }
 
+.logo {
+    border-bottom: 0px solid currentColor;
+}
+
 body {
     background-color: var(--cl-base);
     color: var(--cl-text);
@@ -65,11 +69,15 @@ nav {
     padding: 1rem 10vw;
 }
 
-nav ul {
+ul {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 1rem;
     list-style-type: none;
+}
+
+nav ul {
+    flex-direction: row;
 }
 
 nav a,
@@ -79,4 +87,38 @@ nav a:visited {
 
 main {
     padding: 1rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+}
+
+button,
+input {
+    margin-bottom: 1rem;
+    max-width: 30rem;
+    padding: 0.5rem;
+}
+
+hr {
+    border-radius: 3px;
+    border: 0.15rem solid var(--cl-surface0);
+    margin: 2rem 0;
+}
+
+.toys_shelf {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.toy_block {
+    border-radius: 3px;
+    border: 0.3rem solid var(--cl-surface0);
+    padding: 1rem;
+    width: fit-content;
 }

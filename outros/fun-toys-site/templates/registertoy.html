@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}Início{% endblock %}
+
+{% block main %}
+    <h2>Registrar Brinquedo</h2>
+    
+    <form action="/registertoy" method="post">
+        <label for="toyname"><p>Nome</p></label>
+        <input autocomplete="off" autofocus name="toyname" placeholder="..." type="text">
+        
+        <label for="manufacturer"><p>Fabricante</p></label>
+        <input autocomplete="off" name="manufacturer" placeholder="..." type="text">
+
+        <label for="value"><p>Valor (R$)</p></label>
+        <input autocomplete="off" name="value" placeholder="..." type="number">
+        
+        <label for="quantity"><p>Qntd. estoque</p></label>
+        <input autocomplete="off" name="quantity" placeholder="..." type="number">
+
+        <button class="btn btn-primary" type="submit">Adicionar</button>
+    </form>
+{% endblock %}

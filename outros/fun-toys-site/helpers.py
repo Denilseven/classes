@@ -12,3 +12,8 @@ def login_required(f):
             return redirect("/login")
         return f(*args, **kwargs)
     return decorated_function
+
+def brl(value):
+    s = f"{value:,.2f}" # is this the best way to do it??
+    s.replace(",", "X").replace(".", ",").replace("X", ".")
+    return f"R$ {s}"

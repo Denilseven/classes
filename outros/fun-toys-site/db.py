@@ -1,9 +1,9 @@
 import sqlite3
 
-conn = sqlite3.connect('banco.db')
-cur = conn.cursor()
-
 def init_db():
+    conn = sqlite3.connect('banco.db')
+    cur = conn.cursor()
+
     cur.execute(
         """
         CREATE TABLE IF NOT EXISTS pessoa(

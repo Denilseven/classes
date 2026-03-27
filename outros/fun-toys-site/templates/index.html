@@ -3,5 +3,22 @@
 {% block title %}Início{% endblock %}
 
 {% block main %}
-    <p>Página inicial da Fun Toys!</p>
+    <ul>
+        <p><a href="#">Realizar compra...</a></p>
+        <p><a href="registertoy">Registrar brinquedo...</a></p>
+    </ul>
+
+    <hr>
+
+    <h2>Brinquedos registrados:</h2>
+
+    <div class="toys_shelf">
+        {% for toy in toys_data %}
+        <div class="toy_block">
+            <p><strong>{{ toy.nome }}</strong> - {{ toy.fabricante }}</p>
+            <p>{{ toy.valor | brl }}</p>
+            <p>{{ toy.estoque }} em estoque.</p>
+        </div>
+        {% endfor %}
+    </div>
 {% endblock %}
