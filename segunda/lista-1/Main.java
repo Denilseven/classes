@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Carro {
+    static int totalCarros = 0;
+
     private String marca;
     private String modelo;
     private int ano;
@@ -37,12 +39,14 @@ public class Carro {
         this.marca = marca;
         this.modelo = modelo;
         this.ano = ano;
+        Carro.totalCarros++;
     }
 
     public Carro() {
         this.marca = "Desconhecido";
         this.modelo = "Desconhecido";
         this.ano = 0;
+        Carro.totalCarros++;
     }
 
     public void exibir() {
@@ -64,9 +68,14 @@ public class Main {
         carros.add(new Carro("Wolfsagen", "AT09", 2010));
         carros.add(new Carro("Tóiot", "Horizon", 2017));
         carros.add(new Carro("Ronday", "Koloral", 1930));
+        carros.add(new Carro("Wamaha", "Miku", 2007));
+        carros.add(new Carro("Wario's", "Bowser", 1985));
 
         carros.forEach(carro -> carro.exibir());
         // Esse `forEach` é bem parecido com isso:
         // https://github.com/Denilseven/breakout-cppcon2014/blob/9e3c0501ea61c9fc66f6c6a5618a0dd92c3874cc/main.cxx#L363
+
+        System.out.println("Total de carros: " + Carro.totalCarros);
+        // Acessando um valor da classe em si (top!)
     }
 }
