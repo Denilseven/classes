@@ -86,6 +86,8 @@ public class Main {
 
         Carro.imprimirTotal();
 
+
+
         int x;
         { // (Dá pra definir escopos só usando {} mas parece bem estranho kk)
             x = 10; // Essa variável é acessível aqui
@@ -93,5 +95,14 @@ public class Main {
         }
         // ... A variável `g` já não é mais acessível aqui
         System.out.println(x);
+
+
+
+        int a = 10;
+        int b = a;
+        b = 99;
+        System.out.println("a = " + a); // 10
+        System.out.println("b = " + b); // 99
+        // Alterar `b` não alterou o valor de `a`
     }
 }
