@@ -99,10 +99,22 @@ public class Main {
 
 
         int a = 10;
-        int b = a;
+        int b = a; // Definindo o valor de `b` para o valor que está em `a`, 10
         b = 99;
         System.out.println("a = " + a); // 10
         System.out.println("b = " + b); // 99
         // Alterar `b` não alterou o valor de `a`
+
+
+
+        Carro c1 = new Carro("Fiat", "Uno", 2020);
+        Carro c2 = c1; // Definindo o valor de `c2` para o endereço de `c1`
+        c2.setModelo("Palio");
+        System.out.println(c1.getModelo()); // Palio
+        System.out.println(c2.getModelo()); // Palio
+        // `Carro` não é um objeto primitivo como `int`, ele é alocado no Heap
+        // A variável `c2` passa a apontar para o mesmo endereço Heap que `c1`
+        // Sendo assim, ambos `c1` e `c2` compartilham do mesmo objeto, referenciando à mesma coisa
+        // (Objetos primitivos são alocados no Stack ao invés do Heap)
     }
 }
