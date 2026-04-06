@@ -116,5 +116,16 @@ public class Main {
         // A variável `c2` passa a apontar para o mesmo endereço Heap que `c1`
         // Sendo assim, ambos `c1` e `c2` compartilham do mesmo objeto, referenciando à mesma coisa
         // (Objetos primitivos são alocados no Stack ao invés do Heap)
+
+
+
+        Carro meuCarro = new Carro("VW", "Gol", 2015);
+        trocarModelo(meuCarro); // Aqui nós estamos passando uma referência para `meuCarro`
+        System.out.println(meuCarro.getModelo()); // Fusca
+    }
+
+    public static void trocarModelo(Carro c) {
+        c.setModelo("Fusca");
+        // `c` aponta para uma referência do objeto passado, e não à uma cópia dele
     }
 }
