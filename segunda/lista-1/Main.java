@@ -22,6 +22,8 @@ public class Carro {
 
     public static final int ANO_MUITO_ANTIGO = 1886;
     public static final int ANO_MUITO_RECENTE = 2026;
+    // `final` praticamente significa "constante" para variáveis
+    // (Google) Também pode ser usado para métodos que não podem ser sobrescritos e classes que não podem ser herdadas
     
     public int getAno() { return ano; }
     public boolean setAno(int ano) {
