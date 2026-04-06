@@ -85,5 +85,13 @@ public class Main {
         // https://github.com/Denilseven/breakout-cppcon2014/blob/9e3c0501ea61c9fc66f6c6a5618a0dd92c3874cc/main.cxx#L363
 
         Carro.imprimirTotal();
+
+        int x;
+        { // (Dá pra definir escopos só usando {} mas parece bem estranho kk)
+            x = 10; // Essa variável é acessível aqui
+            int g; // Variável definida dentro desse escopo, e será destruída no final dele ...
+        }
+        // ... A variável `g` já não é mais acessível aqui
+        System.out.println(x);
     }
 }
