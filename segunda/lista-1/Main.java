@@ -8,9 +8,30 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Carro {
-    String marca;
-    String modelo;
-    int ano;
+    private String marca;
+    private String modelo;
+    private int ano;
+
+    public String getMarca() { return marca; }
+    public void setMarca(String marca) { this.marca = marca; }
+
+    public String getModelo() { return modelo; }
+    public void setModelo(String modelo) { this.modelo = modelo; }
+
+    public static final int ANO_MUITO_ANTIGO = 1886;
+    public static final int ANO_MUITO_RECENTE = 2026;
+    
+    public int getAno() { return ano; }
+    public boolean setAno(int ano) {
+        if (ANO_MUITO_ANTIGO < 1886 || ano > ANO_MUITO_RECENTE) {
+            System.out.println("Erro: ano inválido, deve ser entre " + ANO_MUITO_ANTIGO + " e " + ANO_MUITO_RECENTE);
+            return false;
+        }
+        else {
+            this.ano = ano;
+            return true;
+        }
+    }
 
     public Carro(String marca, String modelo, int ano) {
         this.marca = marca;
@@ -36,7 +57,7 @@ public class Main {
 
         carros.add(new Carro("Wolfsagen", "AT09", 2010));
         carros.add(new Carro("Tóiot", "Horizon", 2017));
-        carros.add(new Carro("Ronday", "Koloral", 1830));
+        carros.add(new Carro("Ronday", "Koloral", 1930));
 
         carros.forEach(carro -> carro.exibir());
         // Esse `forEach` é bem parecido com isso:
