@@ -39,6 +39,12 @@ public class Carro {
         this.ano = ano;
     }
 
+    public Carro() {
+        this.marca = "Desconhecido";
+        this.modelo = "Desconhecido";
+        this.ano = 0;
+    }
+
     public void exibir() {
         System.out.println("CARRO:");
         System.out.println("  Marca:  " + this.marca);
