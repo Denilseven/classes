@@ -35,6 +35,10 @@ public class Carro {
         }
     }
 
+    public int idadeDoCarro() {
+        return (2026 - this.ano);
+    }
+
     public Carro(String marca, String modelo, int ano) {
         this.marca = marca;
         this.modelo = modelo;
@@ -56,8 +60,11 @@ public class Carro {
         System.out.println("  Ano:    " + this.ano + " (Idade: " + this.idadeDoCarro() + ")");
     }
 
-    public int idadeDoCarro() {
-        return (2026 - this.ano);
+    static int imprimirTotal() {
+        System.out.println("Total de carros: " + Carro.totalCarros); // Acessando um valor (estático) da classe em si
+        return Carro.totalCarros;
+        // Uma função `static` não pode acessar atributos de uma instância
+        // Suponho que seja pq não há referência à nenhuma instância (`this`) no caso
     }
 }
 
@@ -75,7 +82,6 @@ public class Main {
         // Esse `forEach` é bem parecido com isso:
         // https://github.com/Denilseven/breakout-cppcon2014/blob/9e3c0501ea61c9fc66f6c6a5618a0dd92c3874cc/main.cxx#L363
 
-        System.out.println("Total de carros: " + Carro.totalCarros);
-        // Acessando um valor da classe em si (top!)
+        Carro.imprimirTotal();
     }
 }
