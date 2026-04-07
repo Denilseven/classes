@@ -4,8 +4,9 @@
  * Aluno: Denilson
  */
 
+package exercicios;
+import customizado.CustomizadoIO;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Main {
     public static ArrayList<Carro> carros = new ArrayList<Carro>();
@@ -74,31 +75,31 @@ public class Main {
         boolean repetir = true;
         int input = -1;
         while (repetir) {
-            imprimirTitulo("MENU PRINCIPAL");
+            CustomizadoIO.imprimirTitulo("MENU PRINCIPAL");
             System.out.println("1) Cadastrar Carro");
             System.out.println("2) Listar todos");
             System.out.println("3) Total cadastrado");
             System.out.println("4) Sair");
 
-            input = lerNumero("");
+            input = CustomizadoIO.lerNumero("");
             switch (input) {
                 case 1:
                     cadastrarCarro();
                     break;
                 case 2:
                     carros.forEach(carro -> carro.exibir());
-                    aguardarEnter();
+                    CustomizadoIO.aguardarEnter();
                     break;
                 case 3:
                     Carro.imprimirTotal();
-                    aguardarEnter();
+                    CustomizadoIO.aguardarEnter();
                     break;
                 case 4:
                     repetir = false;
                     break;
                 default:
                     System.out.println("Opção inválida!");
-                    aguardarEnter();
+                    CustomizadoIO.aguardarEnter();
                     break;
             }
         }
@@ -109,63 +110,12 @@ public class Main {
         // `c` aponta para uma referência do objeto passado, e não à uma cópia dele
     }
 
-    public static void imprimirTitulo(String titulo) {
-        System.out.println("=".repeat(titulo.length() + 2));
-        System.out.println(" " + titulo + " ");
-        System.out.println("=".repeat(titulo.length() + 2));
-    }
-
-    public static void aguardarEnter() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("\u001B[47m"); // Código ANSI para deixar o fundo em branco
-        System.out.print("\u001B[30m"); // Código ANSI para deixar o texto em preto
-        System.out.print("Pressione ENTER para continuar ...");
-        System.out.print("\u001B[0m\n"); // Código ANSI para limpar as formatações
-        scanner.nextLine();
-    }
-
-    // Reutilizando esse aqui:
-    // https://github.com/Denilseven/classes/blob/722ea081c27d224d542ea1a543171494101675d4/segunda/atividade-pet-shop/Main.java#L133
-    public static int lerNumero(String mensagem) {
-        if (!mensagem.isEmpty())
-            System.out.println(mensagem);
-        Scanner scanner = new Scanner(System.in);
-        int input = -1;
-        while (input == -1) {
-            try {
-                System.out.print("--> ");
-                input = scanner.nextInt();
-            } catch (Exception e) {
-                scanner.next();
-            }
-        }
-        return input;
-    }
-
-    // Reutilizando esse aqui:
-    // https://github.com/Denilseven/classes/blob/722ea081c27d224d542ea1a543171494101675d4/segunda/pet-shop-2/Main.java#L147-L160
-    public static String lerTexto(String mensagem) {
-        if (!mensagem.isEmpty())
-            System.out.println(mensagem);
-        Scanner scanner = new Scanner(System.in);
-        String input = "";
-        while (input.isEmpty()) {
-            try {
-                System.out.print("--> ");
-                input = scanner.nextLine();
-            } catch (Exception e) {
-                scanner.next();
-            }
-        }
-        return input;
-    }
-
     public static void cadastrarCarro() {
-        imprimirTitulo("CADASTRAR CARRO");
+        CustomizadoIO.imprimirTitulo("CADASTRAR CARRO");
 
-        String marca = lerTexto("Marca:");
-        String modelo = lerTexto("Modelo:");
-        int ano = lerNumero("Ano:");
+        String marca = CustomizadoIO.lerTexto("Marca:");
+        String modelo = CustomizadoIO.lerTexto("Modelo:");
+        int ano = CustomizadoIO.lerNumero("Ano:");
 
         if (Carro.anoValido(ano)) {
             Carro novoCarro = new Carro(marca, modelo, ano);
@@ -177,6 +127,6 @@ public class Main {
             System.out.println("Erro: ano inválido, deve ser entre " + Carro.ANO_MUITO_ANTIGO + " e " + Carro.ANO_MUITO_RECENTE);
         }
 
-        aguardarEnter();
+        CustomizadoIO.aguardarEnter();
     }
 }

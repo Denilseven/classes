@@ -1,3 +1,5 @@
+package exercicios;
+
 public class Cliente {
     static int totalClientes = 0;
 

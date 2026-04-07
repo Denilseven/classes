@@ -1,3 +1,5 @@
+package exercicios;
+
 public class Carro {
     private static int totalCarros = 0;
 
